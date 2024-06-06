@@ -124,3 +124,15 @@ pub fn shift_custom(vec: Vec<i32>, shift_amount: usize) -> Vec<i32> {
 	new_vec.rotate_right(shift_amount);
 	return new_vec;
 }
+
+pub fn compare_cos(vec1: Vec<i32>, vec2: Vec<i32>) -> f64 {
+	let temp1 = vec1.iter().map(|&value| value as f64).collect::<Vec<f64>>();
+	let temp2 = vec2.iter().map(|&value| value as f64).collect::<Vec<f64>>();
+
+	let dot_product = temp1.iter().zip(temp2.iter()).map(|(&a, &b)| a * b).sum::<f64>();
+	let norm_vec1 = (temp1.iter().map(|&a| a * a).sum::<f64>()).sqrt();
+	let norm_vec2 = (temp2.iter().map(|&b| b * b).sum::<f64>()).sqrt();
+
+	let compared = dot_product / (norm_vec1 * norm_vec2);
+	return compared;
+}
